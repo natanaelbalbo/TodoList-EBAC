@@ -1,5 +1,7 @@
 import React from 'react';
-import { useTodos } from '../context/TodoContext';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { todoListState } from '../atoms/todoAtoms';
+import { filteredTodoListState } from '../selectors/todoSelectors';
 import TodoItem from './TodoItem';
 import './TodoList.css';
 
@@ -8,7 +10,20 @@ import './TodoList.css';
  * Otimizado com React.memo
  */
 const TodoList = React.memo(() => {
-  const { filteredTodos, toggleTodo, removeTodo } = useTodos();
+  const filteredTodos = useRecoilValue(filteredTodoListState);
+  const setTodoList = useSetRecoilState(todoListState);
+
+  const toggleTodo = (id) => {
+    setTodoList((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const removeTodo = (id) => {
+    setTodoList((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
 
   if (filteredTodos.length === 0) {
     return (

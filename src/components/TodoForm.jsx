@@ -1,5 +1,6 @@
 import React from 'react';
-import { useTodos } from '../context/TodoContext';
+import { useSetRecoilState } from 'recoil';
+import { todoListState } from '../atoms/todoAtoms';
 import { useInput } from '../hooks/useInput';
 import './TodoForm.css';
 
@@ -8,8 +9,21 @@ import './TodoForm.css';
  * Otimizado com React.memo para evitar renderizações desnecessárias
  */
 const TodoForm = React.memo(() => {
-  const { addTodo } = useTodos();
+  const setTodoList = useSetRecoilState(todoListState);
   const inputProps = useInput('');
+
+  const addTodo = (text) => {
+    if (!text.trim()) return;
+
+    const newTodo = {
+      id: Date.now(),
+      text: text.trim(),
+      completed: false,
+      createdAt: new Date().toISOString()
+    };
+
+    setTodoList((prevTodos) => [...prevTodos, newTodo]);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

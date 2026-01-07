@@ -1,4 +1,3 @@
-import { TodoProvider } from './context/TodoContext';
 import TodoForm from './components/TodoForm';
 import TodoFilter from './components/TodoFilter';
 import TodoList from './components/TodoList';
@@ -6,12 +5,16 @@ import TodoStats from './components/TodoStats';
 import VitrineProdutos from './components/VitrineProdutos';
 import './App.css';
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import userState from './state/user';
 
 /**
  * Componente principal da aplicação
  */
 function App() {
   // State para alternar entre TodoList e Vitrine de Produtos
+  const usuario = useRecoilValue(userState);
+
   const [mostrarVitrine, setMostrarVitrine] = useState(true);
 
   return (
@@ -61,23 +64,21 @@ function App() {
       {mostrarVitrine ? (
         <VitrineProdutos />
       ) : (
-        <TodoProvider>
-          <div className="app">
-            <header className="app-header">
-              <h1 className="app-title">📝 Todo List</h1>
-              <p className="app-subtitle">
-                Gerencie suas tarefas de forma eficiente
-              </p>
-            </header>
+        <div className="app">
+          <header className="app-header">
+            <h1 className="app-title">📝 Todo List</h1>
+            <p className="app-subtitle">
+              Gerencie suas tarefas de forma eficiente
+            </p>
+          </header>
 
-            <main className="app-content">
-              <TodoForm />
-              <TodoStats />
-              <TodoFilter />
-              <TodoList />
-            </main>
-          </div>
-        </TodoProvider>
+          <main className="app-content">
+            <TodoForm />
+            <TodoStats />
+            <TodoFilter />
+            <TodoList />
+          </main>
+        </div>
       )}
     </>
   );

@@ -1,5 +1,7 @@
 import React from 'react';
-import { useTodos, FILTERS } from '../context/TodoContext';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { filterState, FILTERS } from '../atoms/todoAtoms';
+import { todoStatsState } from '../selectors/todoSelectors';
 import './TodoFilter.css';
 
 /**
@@ -7,7 +9,8 @@ import './TodoFilter.css';
  * Otimizado com React.memo
  */
 const TodoFilter = React.memo(() => {
-  const { filter, setFilter, stats } = useTodos();
+  const [filter, setFilter] = useRecoilState(filterState);
+  const stats = useRecoilValue(todoStatsState);
 
   const filterButtons = [
     { key: FILTERS.ALL, label: 'Todas', count: stats.total },

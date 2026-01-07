@@ -1,5 +1,6 @@
 import React from 'react';
-import { useTodos } from '../context/TodoContext';
+import { useRecoilValue } from 'recoil';
+import { todoStatsState } from '../selectors/todoSelectors';
 import './TodoStats.css';
 
 /**
@@ -7,7 +8,7 @@ import './TodoStats.css';
  * Otimizado com React.memo
  */
 const TodoStats = React.memo(() => {
-  const { stats } = useTodos();
+  const stats = useRecoilValue(todoStatsState);
 
   const percentage = stats.total > 0
     ? Math.round((stats.completed / stats.total) * 100)
