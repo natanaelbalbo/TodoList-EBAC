@@ -4,10 +4,6 @@ import { filterState, FILTERS } from '../atoms/todoAtoms';
 import { todoStatsState } from '../selectors/todoSelectors';
 import './TodoFilter.css';
 
-/**
- * Componente de filtros
- * Otimizado com React.memo
- */
 const TodoFilter = React.memo(() => {
   const [filter, setFilter] = useRecoilState(filterState);
   const stats = useRecoilValue(todoStatsState);
@@ -15,7 +11,7 @@ const TodoFilter = React.memo(() => {
   const filterButtons = [
     { key: FILTERS.ALL, label: 'Todas', count: stats.total },
     { key: FILTERS.PENDING, label: 'Pendentes', count: stats.pending },
-    { key: FILTERS.COMPLETED, label: 'Concluídas', count: stats.completed }
+    { key: FILTERS.COMPLETED, label: 'Concluídas', count: stats.completed },
   ];
 
   return (

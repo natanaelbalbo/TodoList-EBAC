@@ -1,10 +1,6 @@
 import React from 'react';
 import './TodoItem.css';
 
-/**
- * Componente individual de tarefa
- * Otimizado com React.memo para evitar renderizações desnecessárias
- */
 const TodoItem = React.memo(({ todo, onToggle, onRemove }) => {
   const handleToggle = () => onToggle(todo.id);
   const handleRemove = () => onRemove(todo.id);

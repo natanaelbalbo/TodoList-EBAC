@@ -4,10 +4,6 @@ import { todoListState } from '../atoms/todoAtoms';
 import { useInput } from '../hooks/useInput';
 import './TodoForm.css';
 
-/**
- * Componente de formulário para adicionar novas tarefas
- * Otimizado com React.memo para evitar renderizações desnecessárias
- */
 const TodoForm = React.memo(() => {
   const setTodoList = useSetRecoilState(todoListState);
   const inputProps = useInput('');
@@ -19,7 +15,7 @@ const TodoForm = React.memo(() => {
       id: Date.now(),
       text: text.trim(),
       completed: false,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
 
     setTodoList((prevTodos) => [...prevTodos, newTodo]);

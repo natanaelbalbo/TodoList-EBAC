@@ -1,10 +1,6 @@
 import { selector } from 'recoil';
 import { todoListState, filterState, FILTERS } from '../atoms/todoAtoms';
 
-/**
- * Seletor para retornar as tarefas filtradas
- * baseado no filtro atual
- */
 export const filteredTodoListState = selector({
   key: 'filteredTodoListState',
   get: ({ get }) => {
@@ -20,12 +16,9 @@ export const filteredTodoListState = selector({
       default:
         return list;
     }
-  }
+  },
 });
 
-/**
- * Seletor para calcular estatísticas das tarefas
- */
 export const todoStatsState = selector({
   key: 'todoStatsState',
   get: ({ get }) => {
@@ -37,7 +30,7 @@ export const todoStatsState = selector({
     return {
       total: totalNum,
       completed: completedNum,
-      pending: pendingNum
+      pending: pendingNum,
     };
-  }
+  },
 });

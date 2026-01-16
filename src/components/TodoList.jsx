@@ -5,10 +5,6 @@ import { filteredTodoListState } from '../selectors/todoSelectors';
 import TodoItem from './TodoItem';
 import './TodoList.css';
 
-/**
- * Componente da lista de tarefas
- * Otimizado com React.memo
- */
 const TodoList = React.memo(() => {
   const filteredTodos = useRecoilValue(filteredTodoListState);
   const setTodoList = useSetRecoilState(todoListState);
@@ -16,8 +12,8 @@ const TodoList = React.memo(() => {
   const toggleTodo = (id) => {
     setTodoList((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
     );
   };
 
@@ -29,7 +25,9 @@ const TodoList = React.memo(() => {
     return (
       <div className="empty-state">
         <p>Nenhuma tarefa encontrada</p>
-        <p className="empty-state-subtitle">Adicione uma nova tarefa para começar!</p>
+        <p className="empty-state-subtitle">
+          Adicione uma nova tarefa para começar!
+        </p>
       </div>
     );
   }
