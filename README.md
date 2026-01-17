@@ -1,209 +1,132 @@
-# 📝 Todo List - React Avançado
+# 📝 Todo List EBAC
 
-Uma aplicação moderna de lista de tarefas desenvolvida com React, utilizando recursos avançados como Hooks customizados, Context API, Memoization e persistência de dados com localStorage.
+Projeto de gerenciamento de tarefas desenvolvido como parte do curso de Engenheiro Front-end da EBAC. Uma aplicação que demonstra o uso de React Avançado, incluindo Context API, Hooks customizados e técnicas de otimização de performance.
 
-![React](https://img.shields.io/badge/React-18.2.0-blue)
-![Vite](https://img.shields.io/badge/Vite-5.0.8-purple)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
+## 🎯 Sobre o Projeto
+
+Este gerenciador de tarefas foi criado para aplicar conceitos avançados do React em um cenário real de desenvolvimento. O projeto foca em criar uma aplicação performática e escalável, utilizando as melhores práticas de desenvolvimento front-end e patterns de otimização.
+
+### Problema Resolvido
+
+Aplicações de lista de tarefas frequentemente enfrentam problemas de performance quando o número de itens cresce, além de perderem os dados ao recarregar a página. Este projeto aborda essas questões através de:
+
+- **Otimização de Renderização**: Uso de `React.memo`, `useMemo` e `useCallback` para evitar re-renderizações desnecessárias
+- **Persistência de Dados**: Integração com localStorage através de hook customizado, mantendo as tarefas salvas localmente
+- **Gerenciamento de Estado Eficiente**: Context API centraliza o estado, evitando prop drilling e facilitando manutenção
+- **Separação de Responsabilidades**: Hooks customizados encapsulam lógica reutilizável, tornando o código mais limpo e testável
+
+## 📚 O Que Aprendi
+
+Durante o desenvolvimento deste projeto, aprofundei conhecimentos em:
+
+- **Context API**: Implementação de estado global sem bibliotecas externas, entendendo quando usar Context vs prop drilling
+- **Custom Hooks**: Criação de hooks reutilizáveis (`useLocalStorage`, `useInput`) para abstrair lógica complexa
+- **Memoization**: Aplicação prática de `React.memo`, `useMemo` e `useCallback` para otimização de performance
+- **Ciclo de Vida com Hooks**: Uso avançado de `useEffect` para sincronização com APIs externas (localStorage)
+- **Computed Values**: Criação de valores derivados do estado usando `useMemo` para cálculos de estatísticas
+- **Padrões de Composição**: Estruturação de componentes seguindo princípios de componentes controlados e não-controlados
+- **Performance React**: Identificação de gargalos e aplicação de técnicas de otimização
 
 ## 🚀 Tecnologias Utilizadas
 
-- **React 18.2.0** - Biblioteca JavaScript para construção de interfaces
+- **React 18.2** - Biblioteca para interfaces de usuário
 - **Vite** - Build tool moderna e rápida
 - **Context API** - Gerenciamento de estado global
-- **Custom Hooks** - Lógica reutilizável encapsulada
-- **React.memo** - Otimização de performance
-- **useMemo & useCallback** - Memoization de valores e funções
-- **localStorage** - Persistência de dados no navegador
+- **JavaScript ES6+** - Features modernas do JavaScript
+- **CSS3** - Estilização com variáveis CSS e animações
 
 ## ✨ Funcionalidades
 
-### Funcionalidades Principais
-- ✅ Adicionar novas tarefas
-- ✅ Marcar tarefas como concluídas
-- ✅ Remover tarefas da lista
-- ✅ Filtrar tarefas (Todas, Concluídas, Pendentes)
-- ✅ Persistência de dados com localStorage
-- ✅ Estatísticas em tempo real
+- ✅ Adicionar, remover e marcar tarefas como concluídas
+- ✅ Filtrar tarefas por status (Todas, Pendentes, Concluídas)
+- ✅ Persistência automática no localStorage
+- ✅ Estatísticas em tempo real do progresso
 - ✅ Interface responsiva e moderna
-
-### Recursos Técnicos Implementados
-
-#### 1. **Hooks do React**
-- `useState` - Gerenciamento de estado local
-- `useEffect` - Sincronização com localStorage
-- `useContext` - Acesso ao contexto global
-- `useMemo` - Memoização de valores computados
-- `useCallback` - Memoização de funções
-
-#### 2. **Context API**
-- `TodoContext` - Contexto global para gerenciar estado das tarefas
-- `TodoProvider` - Provider que envolve a aplicação
-- `useTodos` - Hook customizado para acessar o contexto
-
-#### 3. **Hooks Customizados**
-- `useLocalStorage` - Sincroniza estado com localStorage automaticamente
-- `useInput` - Gerencia estado de inputs de formulário
-
-#### 4. **Memoization**
-- `React.memo` - Otimiza renderização de componentes
-- `useMemo` - Otimiza cálculos de filtros e estatísticas
-- `useCallback` - Otimiza funções de manipulação de tarefas
+- ✅ Performance otimizada com memoization
 
 ## 📁 Estrutura do Projeto
 
 ```
-todo-react-avancado/
+todolist-ebac/
 ├── src/
 │   ├── components/
-│   │   ├── TodoForm.jsx          # Formulário de adição de tarefas
-│   │   ├── TodoForm.css
-│   │   ├── TodoItem.jsx          # Item individual da lista
-│   │   ├── TodoItem.css
+│   │   ├── TodoForm.jsx          # Formulário de adição
+│   │   ├── TodoItem.jsx          # Item da lista
 │   │   ├── TodoList.jsx          # Lista de tarefas
-│   │   ├── TodoList.css
 │   │   ├── TodoFilter.jsx        # Filtros de visualização
-│   │   ├── TodoFilter.css
-│   │   ├── TodoStats.jsx         # Estatísticas das tarefas
-│   │   └── TodoStats.css
-│   ├── context/
-│   │   └── TodoContext.jsx       # Context API e Provider
+│   │   └── TodoStats.jsx         # Estatísticas
+│   ├── state/
+│   │   └── TodoContext.jsx       # Context API global
 │   ├── hooks/
-│   │   ├── useLocalStorage.js    # Hook para localStorage
-│   │   └── useInput.js           # Hook para inputs
-│   ├── App.jsx                   # Componente principal
-│   ├── App.css
-│   ├── main.jsx                  # Ponto de entrada
-│   └── index.css                 # Estilos globais
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
+│   │   ├── useLocalStorage.js    # Persistência localStorage
+│   │   └── useInput.js           # Gerenciamento de inputs
+│   ├── App.jsx
+│   └── main.jsx
+└── package.json
 ```
 
-## 🛠️ Como Rodar o Projeto Localmente
+## ⚙️ Instalação e Uso
 
 ### Pré-requisitos
-- Node.js (versão 16 ou superior)
+
+- Node.js 16 ou superior
 - npm ou yarn
 
-### Passo a Passo
+### Instalação
 
-1. **Clone o repositório**
 ```bash
-git clone https://github.com/seu-usuario/todo-react-avancado.git
-cd todo-react-avancado
-```
+# Clone o repositório
+git clone https://github.com/seu-usuario/todolist-ebac.git
 
-2. **Instale as dependências**
-```bash
+# Entre na pasta do projeto
+cd todolist-ebac
+
+# Instale as dependências
 npm install
-# ou
-yarn install
 ```
 
-3. **Execute o projeto em modo de desenvolvimento**
+### Executar em Desenvolvimento
+
 ```bash
 npm run dev
-# ou
-yarn dev
 ```
 
-4. **Acesse no navegador**
+Acesse http://localhost:5173 no navegador.
+
+### Build para Produção
+
+```bash
+npm run build
+npm run preview
 ```
-http://localhost:5173
-```
 
-### Scripts Disponíveis
+## 💡 Conceitos Técnicos Aplicados
 
-- `npm run dev` - Inicia o servidor de desenvolvimento
-- `npm run build` - Cria a build de produção
-- `npm run preview` - Visualiza a build de produção localmente
+### Context API
 
-## 💡 Conceitos Aplicados
+O estado global é gerenciado através do `TodoContext`, centralizando:
+- Lista de tarefas e suas operações CRUD
+- Filtros de visualização
+- Cálculos de estatísticas
 
-### 1. Context API
-O estado global da aplicação é gerenciado através do `TodoContext`, que fornece:
-- Lista de tarefas
-- Funções de manipulação (adicionar, remover, toggle)
-- Filtros ativos
-- Estatísticas computadas
+### Custom Hooks
 
-### 2. Custom Hooks
-
-#### useLocalStorage
-Hook que sincroniza automaticamente o estado com o localStorage:
+**useLocalStorage**: Sincroniza automaticamente o estado com o localStorage
 ```javascript
 const [todos, setTodos] = useLocalStorage('todos', []);
 ```
 
-#### useInput
-Hook que simplifica o gerenciamento de inputs:
+**useInput**: Simplifica o gerenciamento de inputs de formulário
 ```javascript
-const inputProps = useInput('');
-// Retorna: { value, onChange, reset }
+const { value, onChange, reset } = useInput('');
 ```
 
-### 3. Memoization
+### Otimização de Performance
 
-#### React.memo
-Todos os componentes são otimizados com `React.memo` para evitar renderizações desnecessárias:
-```javascript
-const TodoItem = React.memo(({ todo, onToggle, onRemove }) => {
-  // ...
-});
-```
-
-#### useMemo
-Usado para otimizar cálculos caros:
-```javascript
-const filteredTodos = useMemo(() => {
-  // Filtragem de tarefas
-}, [todos, filter]);
-```
-
-#### useCallback
-Usado para memoizar funções:
-```javascript
-const addTodo = useCallback((text) => {
-  // Adiciona tarefa
-}, [setTodos]);
-```
-
-## 🎨 Interface
-
-A interface foi desenvolvida com foco em:
-- **Responsividade** - Funciona perfeitamente em desktop e mobile
-- **Acessibilidade** - Labels e ARIA attributes apropriados
-- **Feedback Visual** - Animações e transições suaves
-- **Design Moderno** - Gradientes e sombras sutis
-
-## 📊 Performance
-
-A aplicação implementa várias técnicas de otimização:
-- Memoização de componentes com `React.memo`
-- Memoização de valores com `useMemo`
-- Memoização de callbacks com `useCallback`
-- Renderizações condicionais
-- Lazy loading de componentes (quando necessário)
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para:
-1. Fazer um fork do projeto
-2. Criar uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abrir um Pull Request
+- **React.memo**: Componentes memoizados para evitar re-renderizações desnecessárias
+- **useMemo**: Cálculos de filtros e estatísticas otimizados
+- **useCallback**: Funções memoizadas com referências estáveis
 
 ## 📝 Licença
 
-Este projeto foi desenvolvido para fins educacionais como parte do curso da EBAC.
-
-## 👨‍💻 Autor
-
-Desenvolvido como projeto do módulo de React Avançado - EBAC
-
----
-
-⭐ Se este projeto te ajudou, considere dar uma estrela no repositório!
+Projeto desenvolvido para fins educacionais no curso EBAC.
