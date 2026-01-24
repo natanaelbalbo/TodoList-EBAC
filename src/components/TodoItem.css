@@ -68,6 +68,8 @@
   cursor: pointer;
   transition: var(--transition);
   line-height: 1;
+  flex-shrink: 0;
+  min-width: fit-content;
 }
 
 .delete-button:hover {
@@ -89,6 +91,31 @@
   }
 
   .delete-button {
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    min-width: 36px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .todo-item {
+    padding: 0.75rem;
+  }
+
+  .todo-text {
+    font-size: 0.875rem;
+  }
+
+  .delete-button {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
   }
 }
